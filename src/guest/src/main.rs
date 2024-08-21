@@ -28,6 +28,7 @@ fn main() {
         }
     } else {
         println!("No private input provided...");
+        write_output::<str>("reject");
     }
  
 }

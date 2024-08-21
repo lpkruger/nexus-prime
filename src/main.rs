@@ -10,7 +10,7 @@ use std::env;
 const PACKAGE: &str = "guest";
 
 type Input = (U256, U256);
-type Output = i32;
+type Output = str;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -27,10 +27,7 @@ fn main() {
     let prover: Nova<Local> = Nova::compile(&opts).expect("failed to compile guest program");
 
     println!("Setting up Nova public parameters...");
-    let mut pp: PP;
-    //if (args[1]== "prove") {
-        pp = PP::generate().expect("failed to generate parameters");
-    //}
+    let pp: PP = PP::generate().expect("failed to generate parameters");
 
     println!("Running vm");
     let out = prover.run_with_input::<Input>(&input).expect("failed to run program");
